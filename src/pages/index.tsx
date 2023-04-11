@@ -1,10 +1,9 @@
-import Head from "next/head";
-import Image from "next/image";
-import { Inter } from "next/font/google";
-import styles from "@/styles/Home.module.css";
-
-const inter = Inter({ subsets: ["latin"] });
-
 export default function Home() {
-  return null;
+  return (
+    <div className="flex flex-col space-y-2  p-5 ">
+      <p className="first-letter:text-7xl first-letter:hover:text-purple-400">
+        Hello everyone!
+      </p>
+    </div>
+  );
 }
