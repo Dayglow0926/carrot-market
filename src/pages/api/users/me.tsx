@@ -25,8 +25,11 @@ async function handler(
   });
 }
 
-export default withIronSessionApiRoute(withHandler("GET", handler), {
-  cookieName: "carrotsession",
-  password:
-    "9845904809485098594385093840598df;slkgjfdl;gkfsdjg;ldfksjgdsflgjdfklgjdflgjflkgjdgd",
-});
+export default withIronSessionApiRoute(
+  withHandler({ method: "GET", handler }),
+  {
+    cookieName: "carrotsession",
+    password:
+      "9845904809485098594385093840598df;slkgjfdl;gkfsdjg;ldfksjgdsflgjdfklgjdflgjflkgjdgd",
+  }
+);
