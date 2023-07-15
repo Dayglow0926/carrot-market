@@ -2,15 +2,27 @@ import Button from "@/components/button";
 import Input from "@/components/input";
 import Layout from "@/components/layout";
 import TextArea from "@/components/textarea";
+import useMutation from "@/libs/client/useMutation";
 import { NextPage } from "next";
 import { useForm } from "react-hook-form";
 
+interface UploadProductForm {
+  name: string;
+  price: number;
+  description: string;
+}
+
 const Upload: NextPage = () => {
-  const { register } = useForm();
+  const { register, handleSubmit } = useForm<UploadProductForm>();
+  const [uploadProduct, { loading, data }] = useMutation("/api/products");
+  const onValid = (data: UploadProductForm) => {
+    if (loading) return;
+    uploadProduct(data);
+  };
 
   return (
     <Layout canGoBack title="Upload Product">
-      <form className="space-y-4 p-4">
+      <form className="space-y-4 p-4" onSubmit={handleSubmit(onValid)}>
         <div>
           <label className="flex h-48 w-full cursor-pointer items-center justify-center rounded-md border-2 border-dashed border-gray-300 text-gray-600 hover:border-orange-500 hover:text-orange-500">
             <svg
@@ -31,14 +43,14 @@ const Upload: NextPage = () => {
           </label>
         </div>
         <Input
-          register={register("answer", { required: true, minLength: 5 })}
+          register={register("name", { required: true, minLength: 5 })}
           required
           label="Name"
           name="name"
           type="text"
         />
         <Input
-          register={register("answer", { required: true, minLength: 5 })}
+          register={register("price", { required: true, minLength: 5 })}
           required
           label="Price"
           name="price"
@@ -46,11 +58,12 @@ const Upload: NextPage = () => {
           kind="price"
         />
         <TextArea
-          register={register("answer", { required: true, minLength: 5 })}
+          register={register("description", { required: true, minLength: 5 })}
           name="description"
           label="Description"
+          required
         />
-        <Button text="Upload item" />
+        <Button text={loading ? "Loading..." : "Upload item"} />
       </form>
     </Layout>
   );
