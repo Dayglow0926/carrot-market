@@ -1,15 +1,20 @@
-import Image from "next/image";
-import { Inter } from "next/font/google";
-import { NextPage } from "next";
-import Layout from "@/components/layout";
 import FloatingButton from "@/components/floating-button";
 import Item from "@/components/item";
-
-const inter = Inter({ subsets: ["latin"] });
+import Layout from "@/components/layout";
+import useUser from "@/libs/client/useUser";
+import { NextPage } from "next";
+import Head from "next/head";
 
 const Home: NextPage = () => {
+  const { user, isLoading } = useUser();
+
+  console.log(user);
+
   return (
     <Layout title="홈" hasTabBar>
+      <Head>
+        <title>Home</title>
+      </Head>
       <div className="flex flex-col space-y-5 divide-y">
         {[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1].map((_, i) => (
           <Item
@@ -17,8 +22,8 @@ const Home: NextPage = () => {
             key={i}
             title="iPhone 14"
             price={99}
-            hearts={1}
             image=""
+            hearts={1}
           />
         ))}
         <FloatingButton href="/items/upload">
