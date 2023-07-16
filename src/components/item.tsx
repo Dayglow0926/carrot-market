@@ -9,21 +9,14 @@ interface ItemProps {
   hearts: number;
 }
 
-export default function Item({ title, price, hearts, id, image }: ItemProps) {
+export default function Item({ title, price, hearts, id }: ItemProps) {
   return (
     <Link
-      className="flex cursor-pointer justify-between px-4 pt-5"
       href={`/products/${id}`}
+      className="flex cursor-pointer justify-between px-4 pt-5"
     >
       <div className="flex space-x-4">
-        <div className="relative h-20 w-20  rounded-md">
-          <Image
-            className="fill-inherit object-cover"
-            src={image}
-            // src={`https://imagedelivery.net/aSbksvJjax-AUC7qVnaC4A/${image}/public`}
-            alt={image}
-          />
-        </div>
+        <div className="h-20 w-20 rounded-md bg-gray-400" />
         <div className="flex flex-col pt-2">
           <h3 className="text-sm font-medium text-gray-900">{title}</h3>
           <span className="mt-1 font-medium text-gray-900">${price}</span>
