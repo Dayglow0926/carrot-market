@@ -14,6 +14,7 @@ const Loved: NextPage = () => {
             title="iPhone 14"
             price={99}
             hearts={1}
+            comments={1}
             image=""
           />
         ))}

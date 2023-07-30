@@ -13,6 +13,7 @@ const Sold: NextPage = () => {
             title="iPhone 14"
             price={99}
             image=""
+            comments={1}
             hearts={1}
           />
         ))}
